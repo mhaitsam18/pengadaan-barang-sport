@@ -33,9 +33,18 @@
             <div class="mb-3">
                 <label class="form-label" for="username">Username</label>
                 <input type="text" id="username" class="form-control @error('username') invalid @enderror"
-                    placeholder="abizardd_" name="username" value="{{ old('username') }}" />
+                    placeholder="" name="username" value="{{ old('username') }}" />
 
                 @error('username')
+                    <div class="error">{{ $message }}</div>
+                @enderror
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="email">Email</label>
+                <input type="email" id="email" class="form-control @error('email') invalid @enderror"
+                    placeholder="" name="email" value="{{ old('email') }}" />
+
+                @error('email')
                     <div class="error">{{ $message }}</div>
                 @enderror
             </div>

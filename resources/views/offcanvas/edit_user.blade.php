@@ -34,7 +34,11 @@
 
             <div class="mb-3">
                 <label class="form-label" for="username">Username</label>
-                <input type="text" id="username" class="form-control" placeholder="abizardd_" name="username" />
+                <input type="text" id="username" class="form-control" placeholder="" name="username" />
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="email">email</label>
+                <input type="email" id="email" class="form-control" placeholder="" name="email" />
             </div>
 
             <div class="mb-3">

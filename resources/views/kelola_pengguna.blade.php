@@ -83,6 +83,7 @@
                                             <th>ID</th>
                                             <th>Nama Lengkap</th>
                                             <th>Username</th>
+                                            <th>Email</th>
                                             <th>Role</th>
                                             <th>Status</th>
                                             <th>Action</th>
@@ -193,6 +194,10 @@
                                     name: 'username'
                                 },
                                 {
+                                    data: 'email',
+                                    name: 'email'
+                                },
+                                {
                                     data: 'role',
                                     name: 'role'
                                 },
@@ -219,6 +224,7 @@
                                     render: function(e, t, a, n) {
                                         var s = a.name,
                                             o = a.username,
+                                            m = a.email,
                                             l = a.avatar;
                                         return (
                                             '<div class="d-flex justify-content-start align-items-center user-name"><div class="avatar-wrapper"><div class="avatar avatar-sm me-3">' +
@@ -297,6 +303,7 @@
                                             '<div class="d-inline-block text-nowrap"><button class="btn btn-sm btn-icon btn-edit" data-bs-toggle="offcanvas" data-bs-target="#offcanvasEditUser" data-name="' +
                                             a.name +
                                             '" data-username="' + a.username +
+                                            '" data-email="' + a.email +
                                             '" data-role="' + a.role +
                                             '" data-avatar="' + a.avatar +
                                             '" data-id="' + a.id +
@@ -642,6 +649,7 @@
 
                             var name = $(this).data('name');
                             var username = $(this).data('username');
+                            var email = $(this).data('email');
                             var role = $(this).data('role');
                             var avatar = $(this).data('avatar');
                             var id = $(this).data('id');
@@ -651,11 +659,12 @@
                             $(".offcanvas-body #avatar_old").val(avatar);
                             $(".offcanvas-body #password_old").val(password);
                             $(".offcanvas-body #username").val(username);
+                            $(".offcanvas-body #email").val(email);
                             $(".offcanvas-body #name").val(name);
                             $(".offcanvas-body #role").val(role).change();
                             $(".offcanvas-body .img-preview").attr("src",
                                 "{{ asset('/') }}assets/img/avatars/" + avatar);
-                            // As pointed out in comments, 
+                            // As pointed out in comments,
                             // it is unnecessary to have to manually call the modal.
                             // $('#addBookDialog').modal('show');
 
@@ -701,7 +710,7 @@
 
                             $('#addNewUserForm')[0].reset();
                             // alert('aok')
-                            // As pointed out in comments, 
+                            // As pointed out in comments,
                             // it is unnecessary to have to manually call the modal.
                             // $('#addBookDialog').modal('show');
 
@@ -739,6 +748,13 @@
                                     validators: {
                                         notEmpty: {
                                             message: "Masukkan username pengguna"
+                                        }
+                                    }
+                                },
+                                email: {
+                                    validators: {
+                                        notEmpty: {
+                                            message: "Masukkan email pengguna"
                                         }
                                     }
                                 },
@@ -810,6 +826,13 @@
                                     validators: {
                                         notEmpty: {
                                             message: "Masukkan username pengguna"
+                                        }
+                                    }
+                                },
+                                email: {
+                                    validators: {
+                                        notEmpty: {
+                                            message: "Masukkan email pengguna"
                                         }
                                     }
                                 },

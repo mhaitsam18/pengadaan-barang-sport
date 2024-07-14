@@ -70,6 +70,7 @@ class KelolaPenggunaController extends Controller
         $validator = Validator::make($req->all(), [
             'name' => ['required', 'string', 'max:255'],
             'username' => ['required', 'string', 'unique:users'],
+            'email' => ['required', 'string', 'unique:users'],
             'role' => ['required', 'string'],
             'password' => ['required', 'string'],
             'avatar' => ['nullable', 'image', 'mimes:jpg,png,jpeg,webp,gif,svg,bmp', 'max:2048'],
@@ -90,6 +91,7 @@ class KelolaPenggunaController extends Controller
         User::create([
             'name' => $req->name,
             'username' => $req->username,
+            'email' => $req->email,
             'role' => $req->role,
             'avatar' => $imageName,
             'password' => Hash::make($req->password),
@@ -135,6 +137,7 @@ class KelolaPenggunaController extends Controller
         $validator = Validator::make($request->all(), [
             'name' => ['required', 'string', 'max:255'],
             'username' => 'required|unique:users,username,' . $user->id,
+            'email' => 'required|unique:users,email,' . $user->id,
             'role' => 'required|string',
             'password' => ['nullable', 'string', 'min:8'],
             'avatar' => ['nullable', 'image', 'mimes:jpg,png,jpeg,webp,gif,svg,bmp', 'max:2048'],
@@ -150,6 +153,7 @@ class KelolaPenggunaController extends Controller
         $data = [
             'name' => $request->name,
             'username' => $request->username,
+            'email' => $request->email,
             'role' => $request->role,
         ];
 
