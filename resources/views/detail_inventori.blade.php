@@ -63,22 +63,35 @@
 
 
                                 <div class="row">
-
-
-
-                                    <div class="col-xl-2 col-lg-2 col-md-4 col-sm-4 col-6 mb-4">
-                                        <div class="card">
-                                            <div class="card-body text-center">
-                                                <div class="avatar avatar-md mx-auto mb-3">
-                                                    <span class="avatar-initial rounded-circle bg-label-info"><i
-                                                            class='bx bxs-cabinet'></i></span>
+                                    @if ($inventory->stok_bahan < 10)
+                                        <div class="col-xl-2 col-lg-2 col-md-4 col-sm-4 col-6 mb-4">
+                                            <div class="card">
+                                                <div class="card-body text-center">
+                                                    <div class="avatar avatar-md mx-auto mb-3">
+                                                        <span class="avatar-initial rounded-circle bg-label-danger"><i
+                                                                class='bx bxs-error'></i></span>
+                                                    </div>
+                                                    <span class="d-block mb-1 text-nowrap">Stok Hampir habis</span>
+                                                    <h4 class="mb-0">
+                                                        {{ $inventory->stok_bahan . ' ' . $inventory->satuan_bahan }}</h4>
                                                 </div>
-                                                <span class="d-block mb-1 text-nowrap">Stok Bahan</span>
-                                                <h4 class="mb-0">
-                                                    {{ $inventory->stok_bahan . ' ' . $inventory->satuan_bahan }}</h4>
                                             </div>
                                         </div>
-                                    </div>
+                                    @else
+                                        <div class="col-xl-2 col-lg-2 col-md-4 col-sm-4 col-6 mb-4">
+                                            <div class="card">
+                                                <div class="card-body text-center">
+                                                    <div class="avatar avatar-md mx-auto mb-3">
+                                                        <span class="avatar-initial rounded-circle bg-label-info"><i
+                                                                class='bx bxs-cabinet'></i></span>
+                                                    </div>
+                                                    <span class="d-block mb-1 text-nowrap">Stok Bahan</span>
+                                                    <h4 class="mb-0">
+                                                        {{ $inventory->stok_bahan . ' ' . $inventory->satuan_bahan }}</h4>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @endif
 
 
                                 </div>
@@ -761,7 +774,7 @@
 
                             $('#addNewUserForm')[0].reset();
                             // alert('aok')
-                            // As pointed out in comments, 
+                            // As pointed out in comments,
                             // it is unnecessary to have to manually call the modal.
                             // $('#addBookDialog').modal('show');
 
