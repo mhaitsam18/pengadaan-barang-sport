@@ -127,7 +127,7 @@
                                                                 </p>
 
                                                                 @if ($item->status == 0)
-                                                                    <small class="text-danger">Pemakaiian</small>
+                                                                    <small class="text-danger">Pemakaian</small>
                                                                 @else
                                                                     <small class="text-success">Penambahan</small>
                                                                 @endif
@@ -162,6 +162,59 @@
                                 </div>
                                 <!--/ Latest Update -->
                             @endif
+                            <div class="col-md-6 col-lg-6 col-xl-4 col-xl-4 mb-4">
+                                <div class="card">
+                                    <div class="card-header d-flex align-items-center justify-content-between mb-3">
+                                        <h5 class="card-title mb-0">
+                                            Pemberitahuan Stok Hampir Habis
+                                        </h5>
+
+                                    </div>
+                                    <div class="card-body overflow-auto" style="max-height: 300px;">
+                                        <ul class="p-0 m-0">
+
+                                            @foreach ($stok_hampir_habis as $stok)
+                                                <li class="d-flex mb-4">
+                                                    <div class="avatar avatar-sm flex-shrink-0 me-3">
+                                                        <span class="avatar-initial rounded-circle bg-label-primary">
+                                                            <img src="{{ asset('assets/img/bahan/' . $stok->gambar_bahan) }}"
+                                                                alt="" style="border-radius: 100%">
+                                                        </span>
+                                                    </div>
+                                                    <div
+                                                        class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
+                                                        <div class="me-2">
+                                                            <p class="mb-0 lh-1">
+                                                                {{ $stok->nama_bahan }}
+                                                            </p>
+
+                                                            <small class="text-danger">Sisa Stok:
+                                                                {{ $stok->stok_bahan }}</small>
+                                                        </div>
+                                                        <div class="item-progress">
+                                                            {{-- {{ $item->stok_berubah }} {{ $item->satuan_bahan }} &nbsp;
+
+                                                            @if ($item->status == 0)
+                                                                <i class='bx bx-trending-down' style='color: red'></i>
+                                                            @else
+                                                                <i class='bx bx-trending-up' style='color: green'></i>
+                                                            @endif --}}
+
+
+
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                            @endforeach
+
+
+
+
+
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
 
 
 

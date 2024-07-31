@@ -44,6 +44,7 @@ class HomeController extends Controller
             // SELECT * FROM `inventory_use` order by created_at DESC;
 
             $data['penggunaan_terakhir'] = InventoryUse::penggunaan_terakhir();
+            $data['stok_hampir_habis'] = Inventory::stokHampirHabis();
             // dd($data['penggunaan_terakhir']);
 
 

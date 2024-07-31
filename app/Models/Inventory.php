@@ -18,4 +18,11 @@ class Inventory extends Model
     ];
 
     protected $table = 'inventories';
+
+    public static function stokHampirHabis()
+    {
+        $details = Inventory::where('stok_bahan', '<', 10)->get();
+
+        return $details;
+    }
 }
