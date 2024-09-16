@@ -25,6 +25,7 @@
             @csrf
 
 
+            <input type="hidden" id="inventory_use_id" name="inventory_use_id" value="">
             <input type="hidden" name="id_user" value="{{ Auth::user()->id }}">
             <input type="hidden" name="inventory_id" value="{{ $inventory->id }}">
 

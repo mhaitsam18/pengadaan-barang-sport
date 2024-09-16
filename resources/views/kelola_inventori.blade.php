@@ -724,22 +724,22 @@
                                         }
                                     }
                                 },
-                                stok: {
-                                    validators: {
-                                        notEmpty: {
-                                            message: "Masukkan jumlah stok"
-                                        },
-                                        numeric: {
-                                            message: "Masukkan angka untuk jumlah stok"
-                                        },
-                                        between: {
-                                            min: 1,
-                                            max: 10000,
-                                            message: "Jumlah stok harus di antara 1 dan 10.000"
-                                        }
+                                // stok: {
+                                //     validators: {
+                                //         notEmpty: {
+                                //             message: "Masukkan jumlah stok"
+                                //         },
+                                //         numeric: {
+                                //             message: "Masukkan angka untuk jumlah stok"
+                                //         },
+                                //         between: {
+                                //             min: 1,
+                                //             max: 10000,
+                                //             message: "Jumlah stok harus di antara 1 dan 10.000"
+                                //         }
 
-                                    }
-                                },
+                                //     }
+                                // },
                                 gambar_bahan: {
                                     validators: {
                                         file: {
@@ -802,9 +802,9 @@
                                             message: "Masukkan angka untuk jumlah stok"
                                         },
                                         between: {
-                                            min: 1,
+                                            min: 0,
                                             max: 10000,
-                                            message: "Jumlah stok harus di antara 1 dan 10.000"
+                                            message: "Jumlah stok harus di antara 0 dan 10.000"
                                         }
 
                                     }

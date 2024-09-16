@@ -234,7 +234,8 @@ class InventoryController extends Controller
         }
 
         $inventory = Inventory::findOrFail($request->inventory_id);
-        $status = $request->status;
+        $inventory_use = InventoryUse::findOrFail($request->inventory_use_id);
+        $status = $request->status_edit;
 
         // dd($status);
 
@@ -256,7 +257,7 @@ class InventoryController extends Controller
         $data_inventory_use = [
             'id_inventory' => $request->inventory_id,
             'stok_berubah' => $request->stok,
-            'status' => $request->status,
+            'status' => $request->status_edit,
             'tanggal_kelola' => $request->tanggal_kelola,
             'keterangan' => $request->keterangan,
             'id_user' => $request->id_user,
@@ -276,8 +277,9 @@ class InventoryController extends Controller
         // dd($stok_akhir);
 
         $inventory->update($data_inventory);
+        $inventory_use->update($data_inventory_use);
 
-        InventoryUse::create($data_inventory_use);
+        // InventoryUse::create($data_inventory_use);
 
         return redirect()->back()->with(['success' => 'Data Stok Berhasil Diupdate!']);
     }
@@ -369,11 +371,17 @@ class InventoryController extends Controller
         // dd($details);
 
         if ($request->ajax()) {
-            $data = InventoryUse::get_detail($id);
+            // Ambil filter bulan dan tahun dari request
+            $bulan = $request->input('bulan');
+            $tahun = $request->input('tahun');
+
+            // Modifikasi query berdasarkan filter
+            $data = InventoryUse::get_detail($id, $bulan, $tahun);
+
             return datatables()->of($data)
                 ->addColumn('action', function (InventoryUse $inventory) {
                     $actionBtn = '<a href="javascript:void(0)" class="m-1 edit btn btn-success btn-sm">Edit</a>
-                    <a href="javascript:void(0)" class="deleteuser btn btn-danger btn-sm">Delete</a>';
+                <a href="javascript:void(0)" class="deleteuser btn btn-danger btn-sm">Delete</a>';
                     return $actionBtn;
                 })
                 ->rawColumns(['action'])

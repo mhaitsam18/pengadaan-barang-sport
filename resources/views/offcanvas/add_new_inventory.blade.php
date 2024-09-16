@@ -29,11 +29,12 @@
                     value="{{ old('nama_barang') }}" />
             </div>
 
-            <div class="mb-3">
+            {{-- <div class="mb-3">
                 <label class="form-label" for="stok">Stok</label>
                 <input type="number" class="form-control" id="stok" placeholder="12" name="stok"
                     value="{{ old('stok') }}" />
-            </div>
+            </div> --}}
+            <input type="hidden" class="form-control" id="stok" name="stok" value="0">
 
             <div class="mb-3">
                 <label class="form-label" for="satuan_bahan">Satuan Barang</label>

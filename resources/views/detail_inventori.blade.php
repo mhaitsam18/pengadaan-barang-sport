@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="{{ asset('/') }}assets/vendor/libs/datatables-buttons-bs5/buttons.bootstrap5.css" />
     <link rel="stylesheet" href="{{ asset('/') }}assets/vendor/libs/select2/select2.css" />
     <link rel="stylesheet" href="{{ asset('/') }}assets/vendor/libs/formvalidation/dist/css/formValidation.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0.25/dist/fancybox.css" />
 @endsection
 
 @section('content')
@@ -119,7 +120,31 @@
 
                                 <div class="d-flex justify-content-between align-items-center row  gap-3 gap-md-0">
                                     <div class="col-md-4 user_role"></div>
+                                    <div>
+                                        <select id="filter-bulan">
+                                            <option value="">Pilih Bulan</option>
+                                            <option value="01">Januari</option>
+                                            <option value="02">Februari</option>
+                                            <option value="03">Maret</option>
+                                            <option value="04">April</option>
+                                            <option value="05">Mei</option>
+                                            <option value="06">Juni</option>
+                                            <option value="07">Juli</option>
+                                            <option value="08">Agustus</option>
+                                            <option value="09">September</option>
+                                            <option value="10">Oktober</option>
+                                            <option value="11">November</option>
+                                            <option value="12">Desember</option>
+                                            <!-- Tambahkan opsi bulan lainnya -->
+                                        </select>
 
+                                        <select id="filter-tahun">
+                                            <option value="">Pilih Tahun</option>
+                                            <option value="2023">2023</option>
+                                            <option value="2024">2024</option>
+                                            <!-- Tambahkan opsi tahun lainnya -->
+                                        </select>
+                                    </div>
                                 </div>
                             </div>
                             <div class="card-datatable table-responsive">
@@ -180,6 +205,8 @@
     <script src="{{ asset('/') }}assets/vendor/libs/cleavejs/cleave.js"></script>
     <script src="{{ asset('/') }}assets/vendor/libs/cleavejs/cleave-phone.js"></script>
 
+    <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0.25/dist/fancybox.umd.js"></script>
+
     <!-- Page JS -->
     {{-- <script src="{{ asset('/') }}assets/js/app-user-list.js"></script> --}}
 
@@ -237,7 +264,13 @@
                         (e = s.DataTable({
 
 
-                            ajax: "/inventori/get_detail_penggunaan/" + segment3,
+                            ajax: {
+                                url: "/inventori/get_detail_penggunaan/" + segment3,
+                                data: function(d) {
+                                    d.bulan = $('#filter-bulan').val(); // Kirim filter bulan
+                                    d.tahun = $('#filter-tahun').val(); // Kirim filter tahun
+                                }
+                            },
                             columns: [{
                                     data: "id",
                                 }, {
@@ -321,9 +354,10 @@
                                             "</p>"
 
                                         if (a.status == 1) {
-                                            result += "<a class='btn btn-primary' href='" +
+                                            result +=
+                                                "<a class='btn btn-primary' data-fancybox='gallery' href='" +
                                                 target + nota +
-                                                "' target='_blank' download>Lihat Nota</a>"
+                                                "' target='_blank'>Lihat Nota</a>"
                                         }
                                         // o = a.satuan_bahan;
 
@@ -376,7 +410,16 @@
                                         var s = "/inventori/delete_inventory_use/" + a.id;
 
                                         return (
-                                            '<div class="d-inline-block text-nowrap"><a class="btn btn-sm btn-icon delete-record" href="' +
+                                            '<div class="d-inline-block text-nowrap"><button class="btn btn-sm btn-icon btn-edit" data-bs-toggle="offcanvas" data-bs-target="#offcanvasEditUser" data-stok="' +
+                                            a.stok_berubah +
+                                            '" data-id="' + a.id +
+                                            '" data-tanggal="' + a.tanggal_kelola +
+                                            '" data-status="' + a.status +
+                                            '" data-pemasok="' + a.pemasok +
+                                            '" data-keterangan="' + a.keterangan +
+                                            '" data-harga="' + a.harga +
+                                            '" data-nota="' + a.nota +
+                                            '"><i class="bx bx-edit"></i></button><div class="d-inline-block text-nowrap"><a class="btn btn-sm btn-icon delete-record" href="' +
                                             s + '"><i class="bx bx-trash"></i></a>'
                                         );
                                     },
@@ -685,11 +728,13 @@
 
                             $('#editKelolaStok')[0].reset();
 
+                            var id = $(this).data('id');
                             var stok_berubah = $(this).data('stok');
                             var tanggal = $(this).data('tanggal');
                             var status = $(this).data('status');
                             var keterangan = $(this).data('keterangan');
 
+                            $(".offcanvas-body #inventory_use_id").val(id);
                             $(".offcanvas-body #stok").val(stok_berubah);
                             $(".offcanvas-body #tanggal_kelola").val(tanggal);
                             $(".offcanvas-body #status_edit").val(status);
@@ -933,19 +978,19 @@
                                     }
                                 },
 
-                                // nota: {
-                                //     validators: {
-                                //         notEmpty: {
-                                //             message: "Masukkan gambar nota"
-                                //         },
-                                //         file: {
-                                //             maxSize: 10 * 1024 * 1024, // 10 MB
-                                //             minSize: 1024, // 1 KB
-                                //             messageExtension: 'Format file tidak sesuai',
-                                //             messageSize: 'Ukuran file harus di antara 1 KB dan 10 MB'
-                                //         }
-                                //     }
-                                // },
+                                nota: {
+                                    validators: {
+                                        notEmpty: {
+                                            message: "Masukkan gambar nota"
+                                        },
+                                        file: {
+                                            maxSize: 10 * 1024 * 1024, // 10 MB
+                                            minSize: 1024, // 1 KB
+                                            messageExtension: 'Format file tidak sesuai',
+                                            messageSize: 'Ukuran file harus di antara 1 KB dan 10 MB'
+                                        }
+                                    }
+                                },
 
                             },
                             plugins: {
@@ -977,15 +1022,19 @@
 
                         }
                     });
+                    $('[data-fancybox="gallery"]').fancybox({
+                        Toolbar: true, // Menampilkan toolbar untuk tombol close, zoom, dll.
+                        zoom: true, // Mengaktifkan zoom in/out
+                    });
+                    $('#filter-bulan, #filter-tahun').change(function() {
+                        table.ajax.reload();
+                    });
 
 
                 })();
 
         });
     </script>
-
-
-    <script></script>
 
     @if ($message = Session::get('success'))
         <script>
