@@ -119,33 +119,38 @@
                                 @endif --}}
 
                                 <div class="d-flex justify-content-between align-items-center row  gap-3 gap-md-0">
-                                    <div class="col-md-4 user_role"></div>
-                                    <div>
-                                        <select id="filter-bulan">
-                                            <option value="">Pilih Bulan</option>
-                                            <option value="01">Januari</option>
-                                            <option value="02">Februari</option>
-                                            <option value="03">Maret</option>
-                                            <option value="04">April</option>
-                                            <option value="05">Mei</option>
-                                            <option value="06">Juni</option>
-                                            <option value="07">Juli</option>
-                                            <option value="08">Agustus</option>
-                                            <option value="09">September</option>
-                                            <option value="10">Oktober</option>
-                                            <option value="11">November</option>
-                                            <option value="12">Desember</option>
-                                            <!-- Tambahkan opsi bulan lainnya -->
-                                        </select>
-
-                                        <select id="filter-tahun">
-                                            <option value="">Pilih Tahun</option>
-                                            <option value="2023">2023</option>
-                                            <option value="2024">2024</option>
-                                            <!-- Tambahkan opsi tahun lainnya -->
-                                        </select>
+                                    <div class="col-md-4 user_role">
+                                        <div class="row">
+                                            <div class="mb-3 col">
+                                                <select id="filter-bulan" class="form-select">
+                                                    <option value="">Pilih Bulan</option>
+                                                    <option value="01">Januari</option>
+                                                    <option value="02">Februari</option>
+                                                    <option value="03">Maret</option>
+                                                    <option value="04">April</option>
+                                                    <option value="05">Mei</option>
+                                                    <option value="06">Juni</option>
+                                                    <option value="07">Juli</option>
+                                                    <option value="08">Agustus</option>
+                                                    <option value="09">September</option>
+                                                    <option value="10">Oktober</option>
+                                                    <option value="11">November</option>
+                                                    <option value="12">Desember</option>
+                                                    <!-- Tambahkan opsi bulan lainnya -->
+                                                </select>
+                                            </div>
+                                            <div class="mb-3 col">
+                                                <select id="filter-tahun" class="form-select">
+                                                    <option value="">Pilih Tahun</option>
+                                                    <option value="2023">2023</option>
+                                                    <option value="2024">2024</option>
+                                                    <!-- Tambahkan opsi tahun lainnya -->
+                                                </select>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
+
                             </div>
                             <div class="card-datatable table-responsive">
                                 <table class="datatables-users table border-top">
@@ -262,8 +267,6 @@
                         }),
                         s.length &&
                         (e = s.DataTable({
-
-
                             ajax: {
                                 url: "/inventori/get_detail_penggunaan/" + segment3,
                                 data: function(d) {
@@ -685,6 +688,10 @@
                                 }
                             },
                         })),
+                        $('#filter-bulan, #filter-tahun').change(function(e) {
+                            var table = $('.datatables-users').DataTable();
+                            table.ajax.reload();
+                        }),
                         $(".datatables-users tbody").on("click", ".delete-record", function(e) {
 
                             const url = $(this).attr('href');
@@ -1025,9 +1032,6 @@
                     $('[data-fancybox="gallery"]').fancybox({
                         Toolbar: true, // Menampilkan toolbar untuk tombol close, zoom, dll.
                         zoom: true, // Mengaktifkan zoom in/out
-                    });
-                    $('#filter-bulan, #filter-tahun').change(function() {
-                        table.ajax.reload();
                     });
 
 

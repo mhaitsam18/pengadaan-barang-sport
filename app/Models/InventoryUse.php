@@ -36,6 +36,7 @@ class InventoryUse extends Model
     }
     public static function get_detail2($inventory_id, $bulan = null, $tahun = null)
     {
+
         $details = InventoryUse::join('inventories', 'inventories.id', '=', 'inventory_use.id_inventory')
             ->join('users', 'inventory_use.id_user', '=', 'users.id')
             ->where('inventories.id', $inventory_id);
@@ -48,14 +49,7 @@ class InventoryUse extends Model
             $details->whereYear('inventory_use.tanggal_kelola', $tahun);
         }
 
-        return $details->get([
-            'inventory_use.*',
-            'users.name',
-            'users.id as id_user',
-            'inventories.nama_bahan',
-            'inventories.id as id_bahan',
-            'inventories.satuan_bahan'
-        ]);
+        return $details->get(['inventory_use.*', 'users.name', 'users.id as id_user', 'inventories.nama_bahan', 'inventories.id as id_bahan', 'inventories.satuan_bahan']);
     }
 
     public static function penggunaan_terakhir()

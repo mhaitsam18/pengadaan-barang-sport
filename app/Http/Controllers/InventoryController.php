@@ -376,7 +376,7 @@ class InventoryController extends Controller
             $tahun = $request->input('tahun');
 
             // Modifikasi query berdasarkan filter
-            $data = InventoryUse::get_detail($id, $bulan, $tahun);
+            $data = InventoryUse::get_detail2($id, $bulan, $tahun);
 
             return datatables()->of($data)
                 ->addColumn('action', function (InventoryUse $inventory) {
