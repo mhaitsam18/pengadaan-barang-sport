@@ -58,6 +58,14 @@
                     placeholder="Contoh: Digunakan untuk membuat tahu" name="keterangan"
                     value="{{ old('keterangan') }}" />
             </div>
+            <div class="mb-3" id="harga_inp">
+                <label class="form-label" for="harga">Harga</label>
+                <input type="number" class="form-control" id="harga" name="harga" value="{{ old('harga') }}" />
+
+                @error('harga')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+            </div>
 
 
             <div id="addFieldEdit" style="display: none">
@@ -67,15 +75,6 @@
                         value="{{ old('pemasok') }}" placeholder="PT. Satu bagi dua" />
 
                     @error('pemasok')
-                        <div class="invalid-feedback">{{ $message }}</div>
-                    @enderror
-                </div>
-                <div class="mb-3" id="harga_inp">
-                    <label class="form-label" for="harga">Harga</label>
-                    <input type="number" class="form-control" id="harga" name="harga"
-                        value="{{ old('harga') }}" />
-
-                    @error('harga')
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>

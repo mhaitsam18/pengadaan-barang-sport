@@ -229,8 +229,9 @@ class InventoryController extends Controller
             $request->nota->move(public_path('assets/img/nota'), $imageName);
             $harga = $request->harga;
         } else {
+            $harga = $request->harga;
 
-            $harga = 0;
+            // $harga = 0;
         }
 
         $inventory = Inventory::findOrFail($request->inventory_id);
@@ -310,8 +311,9 @@ class InventoryController extends Controller
             $request->nota->move(public_path('assets/img/nota'), $imageName);
             $harga = $request->harga;
         } else {
+            $harga = $request->harga;
 
-            $harga = 0;
+            // $harga = 0;
         }
 
         $inventory = Inventory::findOrFail($request->inventory_id);

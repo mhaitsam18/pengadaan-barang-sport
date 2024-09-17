@@ -747,10 +747,10 @@
                             $(".offcanvas-body #status_edit").val(status);
                             $(".offcanvas-body #keterangan").val(keterangan);
 
-                            if (status == 1) {
+                            var harga = $(this).data('harga');
+                            $(".offcanvas-body #harga").val(harga);
 
-                                var harga = $(this).data('harga');
-                                $(".offcanvas-body #harga").val(harga);
+                            if (status == 1) {
 
                                 var pemasok = $(this).data('pemasok');
                                 $(".offcanvas-body #pemasok").val(pemasok);
@@ -760,7 +760,7 @@
                                 // Aktifkan validasi untuk field nama
 
                             } else {
-                                $(".offcanvas-body #harga").val("");
+                                // $(".offcanvas-body #harga").val("");
                                 $(".offcanvas-body #pemsok").val("");
                                 $(".offcanvas-body #nota").val("");
                                 $('#addFieldEdit').hide();
@@ -779,7 +779,7 @@
 
                             } else {
                                 $(".offcanvas-body #pemasok").val("");
-                                $(".offcanvas-body #harga").val("");
+                                // $(".offcanvas-body #harga").val("");
                                 $(".offcanvas-body #nota").val("");
                                 $('#addFieldEdit').hide();
 
@@ -895,7 +895,7 @@
 
                         } else {
                             $(".offcanvas-body #pemasok").val("");
-                            $(".offcanvas-body #harga").val("");
+                            // $(".offcanvas-body #harga").val("");
                             $(".offcanvas-body #nota").val("");
 
 
@@ -1023,7 +1023,7 @@
 
                         } else {
                             $(".offcanvas-body #pemasok").val("");
-                            $(".offcanvas-body #harga").val("");
+                            // $(".offcanvas-body #harga").val("");
                             $(".offcanvas-body #nota").val("");
                             $('#addField').hide();
 
